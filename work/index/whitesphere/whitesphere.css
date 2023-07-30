@@ -1,0 +1,10 @@
+body{
+    padding:0px;
+    margin:0px;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+
+  h1{
+      font-size: 2em;
+      font-family: 400;
+  }

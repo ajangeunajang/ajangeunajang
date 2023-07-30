@@ -11,7 +11,7 @@ $ani_duration : 6s;
 }
 
 html{
-	font-size: 16px;
+    font-size: 16px;
 }
 
 @font-face {
@@ -42,6 +42,12 @@ body{
 a, a:link, a:visited{
     text-decoration: none;
     color: inherit;
+}
+
+.click{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
 }
 
 .bg{
@@ -76,22 +82,13 @@ a, a:link, a:visited{
 
 .logo{
     display: flex;
-    //섹션 내부에 요소들이 들어가면 레이아웃을 잡기 위해 width 와 height 부터 100vw로 설정
     width: 100vw; 
     height: 100vw;
     padding: calc(#{$marg} * 2); // scss에서 설정한 변수($ㅇㅇㅇㅇ)를 계산식으로 활용하려면 #{$중괄호과 샾} 필요!!!
 
-    // 로고 그려지는 "애니메이션" 하기 위해서는 
-    // 0. html에서 svg테그 끝에다 비율 깨주는 속성 preserveAspectRatio="none" 적용하기
-    // 1. 로고svg의 상위 테그인 div의 높이height값을 조정하는 에니메이션을 준다.
-
-    >div{        // 꺽쇠 > 를 쓴 선택자는, "반드시" 직계 자식인 테그"만" 선택
-
+    >div{       
         height: $logo_height;   
         width: 100%; 
-        // svg의 상위 테그인 박스div 에 width 를 안넣으면 너비도 에니메이션에 따라 이상해지더라.... 왜그럴까...시발
-        // Q 왜 선생님은 div에 width 100% 인데 글자 너비가 뒤죽박죽이 아니지?????
-
         animation: IIIII 3s forwards infinite alternate; // 여러 속성들 한줄로 쓰는 법(위) animation: IIIII; animation-duration: 3s; animation-fill-mode: forwards; animation-iteration-count: infinite; animation-direction: alternate; animation-timing-function: ease-in-out;
         animation-timing-function: cubic-bezier(0.66 -0.01 0.43 1.01);
 
@@ -102,18 +99,9 @@ a, a:link, a:visited{
         &.group5{animation-delay: calc(#{$ani_duration} / 5 * 4);}
         &.group6{animation-delay: calc(#{$ani_duration} / 5 * 5);}
 
-
-
-        // (여러 div 요소들로 이루어진) 로고를 넣는 법!!!! -> 글자 하나 (div) 세로 길이height는 같으니까, 그거를 고정
-        // 조건 상황 - 전체 너비는 화면에 무조건 꽉 차는데, 글자 하나(div들) 너비(가로 길이)는 제각각.
-        // (div 안의 svg와 path 로 들어간) 로고 글자 하나하나 너비width는 각각 다르지만, 높이height는 동일.
-        // 따라서 로고가 들어갈 자리의 "전체 가로width 길이"에 대한 세로 길이의 상대적 비율 활용해, 세로 길이=높이 를 계산해서 지정.
-        
         svg {
             width: 100%;
             height: 100%;
-
-            // svg는 (부모 테그인) div 박스를 채우기 위해 높이 너비 100% 해주기!
 
             path{
                 fill: var(--color);
@@ -121,11 +109,6 @@ a, a:link, a:visited{
         }
     }
 }
-// svg{height: 10vw;}
-// svg path {fill: var(--color); 패스 에 색상을 지정한다고 화면에 안보임. 
-// path를 감싸고 있는 (상위 테그인) svg 에 가로 혹은 세로 값을 주었을 때, path 가 화면에 너비를 가지고 나타남.
-// }
-
 
 .linktree{
     font-size: calc(1.1rem + 0.3vw);
@@ -184,8 +167,6 @@ a, a:link, a:visited{
     }
 }
 
-// 로고 스케일러 (에니메이션)은 3종류 정도 만들고, '시간차' 단차를 줘서 5종류로 다르게 적용
-
 @keyframes IIIII {
     0%{height: $logo_height;}
     100%{height: 52%;}
@@ -200,3 +181,206 @@ a, a:link, a:visited{
     0%{height: $logo_height;}
     100%{height: 100%;}
 }
+
+// $lh : 1.55em;
+// $a_li : calc(1.55 * 1rem);
+// $marg : calc(1.5rem / 2);
+// $logo_height : calc((100vw - #{$marg} * 4) * 0.14 );
+// $ani_duration : 6s;
+
+
+// :root{
+//     --bg: #D9D9D9;
+//     --color: #B3B3B3;
+// }
+
+// html{
+// 	font-size: 16px;
+// }
+
+// @font-face {
+//     font-family: "L";
+//     src: url(/font/Lausanne-300Italic.woff) format(woff),
+//     url(/font/Lausanne-300Italic.woff2) format(woff2);        
+// }
+
+// *{
+//     margin: 0;
+//     padding: 0;
+
+//     text-decoration: none;
+//     list-style: none;
+
+//     box-sizing: border-box;
+//     position: relative;
+
+//     font-family: "L", "Noto Sans KR", "Noto Sans CJK KR", "Pretendard", "Helvetica Neue", Helvetica, sans-serif;
+// }
+
+// body{
+//     background: var(--bg);
+//     color: var(--color);
+//     line-height: $lh;
+// }
+
+// a, a:link, a:visited{
+//     text-decoration: none;
+//     color: inherit;
+// }
+
+// .bg{
+//     position: fixed;
+//     pointer-events: none;
+//     top: 0;
+//     left: 0;
+// }
+
+// .ruler{
+//     @extend .bg;
+//     display: flex;
+//     justify-content: space-between;
+//     width: 100%;
+//     padding: 0 calc(#{$marg} * 2); // scss에서 설정한 변수($ㅇㅇㅇㅇ)를 계산식으로 활용하려면 #{$중괄호과 샾} 필요!!!
+
+//     span{
+//         width: 0.15vw;
+//         height: 1rem;
+//         background: var(--color);
+//     }
+
+//     &.rulertop{
+//         top: 0;
+//     }
+
+//     &.rulerbottom{
+//         top: unset; // 탑 unset 안해주면, bottom 0 줘도 안먹히네...
+//         bottom: 0;
+//     }
+// }
+
+// .logo{
+//     display: flex;
+//     //섹션 내부에 요소들이 들어가면 레이아웃을 잡기 위해 width 와 height 부터 100vw로 설정
+//     width: 100vw; 
+//     height: 100vw;
+//     padding: calc(#{$marg} * 2); // scss에서 설정한 변수($ㅇㅇㅇㅇ)를 계산식으로 활용하려면 #{$중괄호과 샾} 필요!!!
+
+//     // 로고 그려지는 "애니메이션" 하기 위해서는 
+//     // 0. html에서 svg테그 끝에다 비율 깨주는 속성 preserveAspectRatio="none" 적용하기
+//     // 1. 로고svg의 상위 테그인 div의 높이height값을 조정하는 에니메이션을 준다.
+
+//     >div{        // 꺽쇠 > 를 쓴 선택자는, "반드시" 직계 자식인 테그"만" 선택
+
+//         height: $logo_height;   
+//         // width: 100%; 
+//         // (svg의 상위 테그인 박스div 에) width 안넣으면 너비도 에니메이션에 따라 이상해지더라.... 왜그럴까...시발
+//         // Q 왜 선생님은 div에 width 100% 인데 글자 너비가 뒤죽박죽이 아니지?????
+
+//         animation: IIIII 3s forwards infinite alternate; // 여러 속성들 한줄로 쓰는 법(위) animation: IIIII; animation-duration: 3s; animation-fill-mode: forwards; animation-iteration-count: infinite; animation-direction: alternate; animation-timing-function: ease-in-out;
+//         animation-timing-function: cubic-bezier(0.66 -0.01 0.43 1.01);
+
+//         &.group1{animation-name: IIIII-xl;}
+//         &.group2{animation-name: IIIII-l; animation-delay: calc(#{$ani_duration} / 5);}
+//         &.group3{animation-delay: calc(#{$ani_duration} / 5 * 2);}
+//         &.group4{animation-delay: calc(#{$ani_duration} / 5 * 3);}
+//         &.group5{animation-delay: calc(#{$ani_duration} / 5 * 4);}
+//         &.group6{animation-delay: calc(#{$ani_duration} / 5 * 5);}
+
+
+
+//         // (여러 div 요소들로 이루어진) 로고를 넣는 법!!!! -> 글자 하나 (div) 세로 길이height는 같으니까, 그거를 고정
+//         // 조건 상황 - 전체 너비는 화면에 무조건 꽉 차는데, 글자 하나(div들) 너비(가로 길이)는 제각각.
+//         // (div 안의 svg와 path 로 들어간) 로고 글자 하나하나 너비width는 각각 다르지만, 높이height는 동일.
+//         // 따라서 로고가 들어갈 자리의 "전체 가로width 길이"에 대한 세로 길이의 상대적 비율 활용해, 세로 길이=높이 를 계산해서 지정.
+        
+//         svg {
+//             // width: 100%;
+//             height: 100%;
+
+//             // svg는 (부모 테그인) div 박스를 채우기 위해 높이 너비 100% 해주기!
+
+//             path{
+//                 fill: var(--color);
+//             }
+//         }
+//     }
+// }
+// // svg{height: 10vw;}
+// // svg path {fill: var(--color); 패스 에 색상을 지정한다고 화면에 안보임. 
+// // path를 감싸고 있는 (상위 테그인) svg 에 가로 혹은 세로 값을 주었을 때, path 가 화면에 너비를 가지고 나타남.
+// // }
+
+
+// .linktree{
+//     font-size: calc(1.1rem + 0.3vw);
+//     // height: 100%;  // (리스트테그ul 에) height 는 왜 써야하는지? 머르겠음
+//     line-height: $lh;
+//     counter-reset: XXXXX;
+//     li{
+//         display: flex;
+//         align-items: center;
+//         position: fixed ; // 랜덤하게 바뀌는 함수 자바스크립트를 주기 위해 위치값을 완전히 통제하고 싶어서. -> 뷰포트 기준 위치값인 fixed 로 (리스트 개체들을)
+//         &::before{
+//             counter-increment: XXXXX;
+//             content: counter(XXXXX);
+//             border: 2px solid;
+//             border-radius: 100px;
+//             width: calc(1.2rem + 0.3vw);
+//             height: calc(1.2rem + 0.3vw);
+//             display: flex; // 가상선택자의 상태가 inline 이라서 높이 너비 조정이 안됨. flex로 바꿔주면 너비 높이 조정 가능. 가운데정렬까지!
+//             align-items: center;
+//             justify-content: center;
+//             margin-right: 0.5rem;
+//         }
+//     }
+//     // ul 테그 리스트 원숫자 자동으로 넣기! (가상 선택자 pseudo element 인) ::before 활용해 앞에 원숫자 자동 증가하는 스킬!!!
+
+//     a:hover{
+//         border-bottom: 3px solid;
+//     }
+
+//     a{
+//         border-bottom: 3px solid transparent;
+//     }
+// }
+
+// .drawing{
+//     width: 100%; //혹시 모르니, 부모 테그에도 100프로 너비 설정. (원래 블록 테그여서-div- 가로 꽉 채우긴 하지만)
+//     mix-blend-mode: luminosity;
+//     bottom: calc(#{$marg} * 2); // 라인의 위치값. 무엇을 의도해서 바닥을 기준으로 조금 올린다는 것인지 모르겠네?ㅎ 시발!
+//     svg{
+//         width: 105%;
+//         height: 105%;
+//         path{ //선 그려지는 에니메이션, 먼저 html에서 path에 length 1 설정하고오기!
+//             stroke-dasharray: 1;
+//             stroke-dashoffset: 1;
+//             animation: OOOOO 1.5s ease-in-out forwards;
+//         }
+//     }
+// }
+
+// @keyframes OOOOO {
+//     from{
+//         stroke-dashoffset: 1;
+//     }
+//     to{
+//         stroke-dashoffset: 0;
+//     }
+// }
+
+// // 로고 스케일러 (에니메이션)은 3종류 정도 만들고, '시간차' 단차를 줘서 5종류로 다르게 적용
+
+// @keyframes IIIII {
+//     0%{height: $logo_height;}
+//     100%{height: 52%;}
+// }
+
+// @keyframes IIIII-l {
+//     0%{height: $logo_height;}
+//     100%{height: 73%;}
+// }
+
+// @keyframes IIIII-xl {
+//     0%{height: $logo_height;}
+//     100%{height: 100%;}
+// }
