@@ -47,6 +47,7 @@ html {
 
 
 nav {
+    white-space: nowrap;
     z-index: 10;
     background-color: var(--bg);
     position: fixed;
@@ -56,6 +57,14 @@ nav {
     display: flex;
     justify-content: space-between;
     width: calc(100vw - 2 * 3rem); //vw와 rem 단위를 함께 계산하려면 calc 써야함!
+    .info-contents{
+        opacity: 0;
+        font-size: 1rem;
+        // transition: opacity 0.3s;
+    }
+    .info:hover{
+        & ~ .info-contents{opacity: 1;}
+    }
 }
 
 .contents {
@@ -68,15 +77,30 @@ nav {
         white-space: nowrap;
         // border-bottom: 4px dotted var(--bg);
         animation: fade 3s forwards;
+        span{color: var(--bg);}
+        
         &::-webkit-scrollbar {
             display: none;
         }
         &:hover {
             color: var(--color);
             transition: all 1s;
-            animation: fade 4s reverse forwards;
+            animation: fade-r 4s forwards;
+            span{color: var(--color); transition: all 1s;}
         }
     }
+}
+
+.info-contents{
+    // border: 1px solid gray;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    padding: 1rem;
+    background-color: white;
+    transform: rotate(35deg);
+    // box-shadow: 10px 10px 9px white;
+    // color: var(--bg);
 }
 
 footer{
@@ -89,6 +113,10 @@ footer{
         cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>😮</text></svg>") 16 0, auto;
     }
 }
+.fontchange{font-family: "neue-haas-grotesk-display", sans-serif; font-weight: 500; font-style: normal;}
+
+
+
 @keyframes ani {
     0% {
         stroke-dasharray: 0.5;
@@ -103,6 +131,42 @@ footer{
 @keyframes fade {
     0% {border-bottom: 4px dotted var(--color);}
     100% {border-bottom: 4px dotted var(--bg);}
+}
+
+@keyframes fade-r {
+    0% {border-bottom: 4px dotted var(--bg);}
+    100% {border-bottom: 4px dotted var(--color);}
+}
+
+
+@media screen and (max-width: 1024px){
+    html{padding: 0 2rem;}
+    .contents, nav{font-size: 4rem;}
+    .contents div{ 
+        color: var(--color); border-bottom: 4px dotted var(--color); animation: none;
+    &:hover{animation: none; transition: none;}}
+    nav{width: calc(100vw - 2 * 2rem); }
+    .contents div span{color: var(--color);}
+    // .fontchange{color: var(--color); animation: none; transition: none;}
+    .contents a:visited {color: #cec7a0;}
+    
+}
+@media screen and (max-width: 768px){
+    html{padding: 0 1.5rem;}
+    .contents, nav{font-size: 4rem;}
+    .contents div{ color: var(--color); border-bottom: 4px dotted var(--color); animation: none;}
+    nav{width: calc(100vw - 2 * 1.5rem); }
+}
+
+@media screen and (max-width: 450px){
+    html{padding: 0 1.5rem;}
+    .contents, nav{font-size: 2rem;}
+    nav{width: calc(100vw - 2 * 1.5rem);border-bottom: 3px dotted var(--color); }
+    .contents{margin-top: 3rem;}
+    .contents div{ color: var(--color); border-bottom: 3px dotted var(--color); animation: none;}
+    // nav span::after{content: '🤔';}
+    .info{display: none;}
+    footer{font-size: 1rem;}
 }
 
 // font-family: 'Noto Sans TC', sans-serif;
