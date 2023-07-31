@@ -182,6 +182,11 @@ a, a:link, a:visited{
     100%{height: 100%;}
 }
 
+
+@media screen and (max-width: 450px){
+    .logo{flex-direction: column;}
+    .logo>div{height: 5vh;}
+}
 // $lh : 1.55em;
 // $a_li : calc(1.55 * 1rem);
 // $marg : calc(1.5rem / 2);
