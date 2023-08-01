@@ -1,9 +1,7 @@
 $lh: 1.45em;
-
 :root {
     --maingreen: rgb(0, 255, 0);
 }
-
 * {
     margin: 0;
     padding: 0;
@@ -12,27 +10,23 @@ $lh: 1.45em;
     box-sizing: border-box;
     position: relative;
     color: var(--color);
-    ;
 }
-
 a,
 a:link,
 a:visited {
     color: inherit;
     text-decoration: none;
 }
-
 html {
     font-size: 16px;
     font-family: "neue-haas-grotesk-display", "pretendard", 'Noto Sans TC', sans-serif; //기본영문,한글,한자 순
     font-weight: 500;
     width: 100%;
 }
-
 .contents {
     opacity: 0;
     transform: translate(-100%, 0);
-    transition: transform 0.3s ease-in-out, opacity 1.2s ease-out;
+    transition: transform 0.7s ease-in-out, opacity 1.2s ease-out;
     // background-color: wheat; opacity: 0.5;
     margin-bottom: 50vh;
     width: 50vw;
@@ -46,13 +40,10 @@ html {
         font-style: normal;
         font-size: 4.25rem;
         letter-spacing: 0.35em;
-
         span {
             color: var(--maingreen);
         }
-
         margin-bottom: 1em;
-
         sup {
             font-size: 1.25rem;
             transition: color 3s ease-out;
@@ -61,14 +52,12 @@ html {
             vertical-align: 2rem;
         }
     }
-
     p {
         word-break: keep-all;
         padding-left: 10rem;
         font-size: 1.25rem;
         letter-spacing: 0.15em;
         line-height: $lh;
-
         sup {
             transition: color 2s ease-out;
             color: var(--maingreen);
@@ -79,28 +68,22 @@ html {
         }
     }
 }
-
 .con2 {
     margin-left: 8.5rem;
-
     p {
         padding-left: 8rem;
     }
 }
-
 span.show {
     color: var(--maingreen);
 }
-
 sup.show {
     color: var(--maingreen);
 }
-
 .contents.show {
     opacity: 1;
     transform: translate(0, 0);
 }
-
 .sticky {
     position: sticky;
     top: 0;
